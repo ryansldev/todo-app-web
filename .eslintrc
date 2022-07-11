@@ -1,0 +1,68 @@
+{
+	"settings": {
+		"react": {
+			"version": "18.1.0"
+		}
+	},
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"parser": "@typescript-eslint/parser",
+	"extends": [
+		"next",
+		"eslint:recommended",
+		"prettier",
+		"plugin:react/recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:prettier/recommended",
+		"plugin:react-hooks/recommended"
+	],
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": "latest",
+		"sourceType": "module"
+	},
+	"plugins": [
+		"react",
+		"prettier",
+		"import",
+		"@typescript-eslint",
+		"eslint-plugin-import-helpers"
+	],
+	"rules": {
+		"eqeqeq": "warn",
+		"react/react-in-jsx-scope": "off",
+		"react-hooks/rules-of-hooks": "warn",
+		"react-hooks/exhaustive-deps": "warn",
+		"@typescript-eslint/no-unused-vars": [
+			"error",
+			{
+				"argsIgnorePattern": "^_"
+			}
+		],
+		"no-console": ["warn"],
+		"import/no-duplicates": [
+			"error",
+			{
+				"considerQueryString": true
+			}
+		],
+		"import-helpers/order-imports": [
+			"warn",
+			{
+				"newlinesBetween": "always",
+				"groups": [
+					"/^next/",
+					"/^react/",
+					"module",
+					"/^~//",
+					["parent", "sibling", "index"]
+				],
+				"alphabetize": { "order": "asc", "ignoreCase": true }
+			}
+		]
+	}
+}
