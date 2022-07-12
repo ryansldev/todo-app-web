@@ -32,7 +32,7 @@ const Home: NextPage = () => {
         return task.done === true
       });
 
-      const progress = Math.round(tasksDone.length / tasks.length * 100)
+      const progress = tasks.length <= 0 ? 0 : Math.round(tasksDone.length / tasks.length * 100)
 
       setProgress(progress);
       setTasks(tasks);
