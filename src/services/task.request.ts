@@ -13,6 +13,8 @@ const updateTask = async (id: string, body: {
   title?: string;
   description?: string;
   done?: boolean;
-}) => await api.put<Task[]>(`/tasks/${id}`, body);
+}) => await api.put(`/tasks/${id}`, body);
 
-export { getTasks, updateTask };
+const deleteTask = async (id: string) => await api.delete(`/tasks/${id}`);
+
+export { getTasks, updateTask, deleteTask };
