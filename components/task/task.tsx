@@ -17,6 +17,19 @@ export function Task({
   const [isDone, setIsDone] = useState(done)
   
   async function onCheck() {
+    await fetch(
+      `http://localhost:3333/tasks/${id}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          done: !isDone
+        })
+      }
+    )
     setIsDone(!isDone)
   }
 
