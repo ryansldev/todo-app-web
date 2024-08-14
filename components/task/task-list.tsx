@@ -1,15 +1,16 @@
 'use client'
 
 import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { Task as TaskType } from "@/types/Task"
 import { Task } from "./task"
+
+import { Form, FormControl, FormField, FormItem, FormMessage } from "../ui/form"
+import { useForm } from "react-hook-form"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 
 import { SendIcon } from "lucide-react"
-import { Form, FormControl, FormField, FormItem, FormMessage } from "../ui/form"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
 
 interface TaskListProps {
   tasks: TaskType[]
