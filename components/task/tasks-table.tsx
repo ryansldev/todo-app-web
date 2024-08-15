@@ -13,7 +13,7 @@ export function TasksTable({
   tasks
 }: TasksTableProps) {
   return (
-    <Table className="w-[500px] mx-auto bg-slate-900">
+    <Table className="max-w-[500px] mx-auto bg-slate-900">
       <TableBody>
         {tasks.map((task, key) => (
           <TasksTableRow

@@ -33,9 +33,11 @@ export function TasksTableRow({task}: TasksTableRowProps) {
       </TableCell>
       <TableCell className="font-medium text-left">{task.title}</TableCell>
       <TableCell className="w-4">
-        <TaskDatePicker
-          task={task}
-        />
+        <div className="sm:block hidden">
+          <TaskDatePicker
+            task={task}
+          />
+        </div>
       </TableCell>
       <TableCell className="w-4">
         <Button
