@@ -44,24 +44,26 @@ export function Task({
   }
 
   return (
-    <div className="flex items-center justify-between w-full space-x-2">
+    <div className="flex items-center justify-between w-full px-2 mb-2">
       <div className="flex items-center space-x-2">
-        <Checkbox id={id} checked={isDone} onCheckedChange={onCheck} />
+        <Checkbox id={id} checked={isDone} onCheckedChange={onCheck} color="#0f0f0f" />
         <label
           htmlFor={id}
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-slate-200"
         >
           {title}
         </label>
       </div>
-      <Button
-        size="icon"
-        variant="destructive"
-        // className="text-red-500 hover:text-red-400"
-        onClick={handleDelete}
-      >
-        <TrashIcon className="h-4 w-4" />
-      </Button>
+      <div>
+        <Button
+          size="icon"
+          variant="outline"
+          className="h-8 w-8 bg-red-900 hover:bg-red-800"
+          onClick={handleDelete}
+        >
+          <TrashIcon className="h-4 w-4" />
+        </Button>
+      </div>
     </div>
   )
 }

@@ -18,7 +18,7 @@ interface TaskListProps {
 }
 
 const formSchema = z.object({
-  title: z.string().min(2),
+  title: z.string(),
 })
 
 export function TaskList({
@@ -44,7 +44,7 @@ export function TaskList({
   }
 
   return (
-    <div className="flex flex-col items-start max-w-[300px] mx-auto gap-4 bg-slate-800 rounded-lg p-10">
+    <div className="flex flex-col items-start max-w-[300px] mx-auto gap-4 bg-slate-900 rounded-lg p-10 text-slate-100">
       {tasks.map((task) => (
         <Task
           id={task.id}
@@ -55,7 +55,7 @@ export function TaskList({
       ))}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="flex w-full max-w-sm items-center space-x-2">
+          <div className="flex w-full max-w-sm items-center relative">
             <FormField
               control={form.control}
               name="title"
@@ -68,7 +68,7 @@ export function TaskList({
                 </FormItem>
               )}
             />
-            <Button type="submit" size="icon">
+            <Button type="submit" variant="ghost" className="text-blue-400 absolute right-0" size="icon">
               <SendIcon className="h-4 w-4" />
             </Button>
           </div>
