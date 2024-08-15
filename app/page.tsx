@@ -1,7 +1,7 @@
 'use client'
 import io from 'socket.io-client'
 import { TaskList } from "@/components/task/task-list";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Task } from '@/types/Task';
 import { apiUrl } from '@/utils/apiUrl';
 
@@ -14,12 +14,22 @@ export default function Home() {
     const tasks = await fetch(`${apiUrl}/tasks`).then((res) => res.json())
     setTasks(tasks)
   }
-
-  fetchTasks()
-
-  socket.on('taskCreated', newTask => {
+  
+  socket.on('taskCreated', (newTask: Task) => {
     setTasks([...tasks, newTask])
   })
+
+  socket.on('taskDeleted', (deletedTaskId: Task['id']) => {
+    setTasks(tasks.filter((task) => task.id !== deletedTaskId))
+  })
+
+  socket.on('taskFinished', (finishedTaskId: Task['id']) => {
+    setTasks(tasks.filter((task) => task.id !== finishedTaskId))
+  })
+  
+  useEffect(() => {
+    fetchTasks()
+  }, [])
 
   return (
     <main className="text-center flex flex-col items-center justify-center min-h-screen">

@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { Checkbox } from "../ui/checkbox";
 import { apiUrl } from "@/utils/apiUrl";
+import { TrashIcon } from "lucide-react";
+import { Button } from "../ui/button";
 
 interface TaskProps {
   id: string;
@@ -34,15 +36,32 @@ export function Task({
     setIsDone(!isDone)
   }
 
+  async function handleDelete() {
+    await fetch(
+      `${apiUrl}/tasks/${id}`,
+      { method: 'DELETE' }
+    )
+  }
+
   return (
-    <div className="flex items-center justify-center space-x-2">
-      <Checkbox id={id} checked={isDone} onCheckedChange={onCheck} />
-      <label
-        htmlFor={id}
-        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+    <div className="flex items-center justify-between w-full space-x-2">
+      <div className="flex items-center space-x-2">
+        <Checkbox id={id} checked={isDone} onCheckedChange={onCheck} />
+        <label
+          htmlFor={id}
+          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        >
+          {title}
+        </label>
+      </div>
+      <Button
+        size="icon"
+        variant="destructive"
+        // className="text-red-500 hover:text-red-400"
+        onClick={handleDelete}
       >
-        {title}
-      </label>
+        <TrashIcon className="h-4 w-4" />
+      </Button>
     </div>
   )
 }
