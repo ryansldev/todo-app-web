@@ -11,6 +11,7 @@ import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 
 import { SendIcon } from "lucide-react"
+import { apiUrl } from "@/utils/apiUrl"
 
 interface TaskListProps {
   tasks: TaskType[]
@@ -32,7 +33,7 @@ export function TaskList({
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const { title } = values
-    await fetch('http://localhost:3333/tasks', {
+    await fetch(`${apiUrl}/tasks`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

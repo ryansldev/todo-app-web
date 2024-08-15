@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Checkbox } from "../ui/checkbox";
+import { apiUrl } from "@/utils/apiUrl";
 
 interface TaskProps {
   id: string;
@@ -18,7 +19,7 @@ export function Task({
   
   async function onCheck() {
     await fetch(
-      `http://localhost:3333/tasks/${id}`,
+      `${apiUrl}/tasks/${id}`,
       {
         method: 'PUT',
         headers: {

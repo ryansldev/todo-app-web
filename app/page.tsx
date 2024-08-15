@@ -1,16 +1,17 @@
 'use client'
 import io from 'socket.io-client'
 import { TaskList } from "@/components/task/task-list";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Task } from '@/types/Task';
+import { apiUrl } from '@/utils/apiUrl';
 
-const socket = io('http://localhost:3333');
+const socket = io(apiUrl);
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([])
 
   async function fetchTasks() {
-    const tasks = await fetch('http://localhost:3333/tasks').then((res) => res.json())
+    const tasks = await fetch(`${apiUrl}/tasks`).then((res) => res.json())
     setTasks(tasks)
   }
 
