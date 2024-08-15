@@ -4,4 +4,6 @@ export interface Task {
   done: boolean;
   deadline?: Date;
   description?: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }

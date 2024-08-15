@@ -1,9 +1,10 @@
 'use client'
 import io from 'socket.io-client'
-import { TaskList } from "@/components/task/task-list";
 import { useEffect, useState } from 'react';
 import { Task } from '@/types/Task';
 import { apiUrl } from '@/utils/apiUrl';
+import { TasksTable } from '@/components/task/tasks-table';
+import { CreateTaskForm } from '@/components/task/create-task-form';
 
 const socket = io(apiUrl);
 
@@ -17,6 +18,10 @@ export default function Home() {
   
   socket.on('taskCreated', (newTask: Task) => {
     setTasks([...tasks, newTask])
+  })
+
+  socket.on('taskEdited', (newTaskList: Task[]) => {
+    setTasks(newTaskList)
   })
 
   socket.on('taskDeleted', (deletedTaskId: Task['id']) => {
@@ -34,7 +39,8 @@ export default function Home() {
   return (
     <main className="text-center flex flex-col items-center justify-center min-h-screen">
       <h1 className="text-4xl font-bold mb-4">Todo List</h1>
-      <TaskList tasks={tasks} />
+      <TasksTable tasks={tasks} />
+      <CreateTaskForm />
     </main>
   );
 }
