@@ -16,21 +16,23 @@ export default function Home() {
     setTasks(tasks)
   }
   
-  socket.on('taskCreated', (newTask: Task) => {
-    setTasks([...tasks, newTask])
-  })
-
-  socket.on('taskEdited', (newTaskList: Task[]) => {
-    setTasks(newTaskList)
-  })
-
-  socket.on('taskDeleted', (deletedTaskId: Task['id']) => {
-    setTasks(tasks.filter((task) => task.id !== deletedTaskId))
-  })
-
-  socket.on('taskFinished', (finishedTaskId: Task['id']) => {
-    setTasks(tasks.filter((task) => task.id !== finishedTaskId))
-  })
+  useEffect(() => {
+    socket.on('taskCreated', (newTask: Task) => {
+      setTasks([...tasks, newTask])
+    })
+  
+    socket.on('taskEdited', (newTaskList: Task[]) => {
+      setTasks(newTaskList)
+    })
+  
+    socket.on('taskDeleted', (deletedTaskId: Task['id']) => {
+      setTasks(tasks.filter((task) => task.id !== deletedTaskId))
+    })
+  
+    socket.on('taskFinished', (finishedTaskId: Task['id']) => {
+      setTasks(tasks.filter((task) => task.id !== finishedTaskId))
+    })
+  }, [])
   
   useEffect(() => {
     fetchTasks()
